@@ -22,11 +22,11 @@ final class SendMailSuscriber implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
-            KernelEvents::VIEW => ['sendMail', EventPriorities::POST_WRITE],
+            KernelEvents::VIEW => ['SendMailSuscriber', EventPriorities::POST_WRITE],
         ];
     }
 
-    public function sendMail(ViewEvent $event): void
+    public function SendMailSuscriber(ViewEvent $event): void
     {
         $data = $event->getControllerResult();
         $method = $event->getRequest()->getMethod();

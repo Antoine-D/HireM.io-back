@@ -38,13 +38,13 @@ final class SwaggerDecorator implements NormalizerInterface
         $docs['components']['schemas']['Credentials'] = [
             'type' => 'object',
             'properties' => [
-                'mail' => [
+                'email' => [
                     'type' => 'string',
-                    'example' => 'api',
+                    'example' => 'antoine.dumont@finelia.fr',
                 ],
                 'password' => [
                     'type' => 'string',
-                    'example' => 'api',
+                    'example' => 'azerty',
                 ],
             ],
         ];
