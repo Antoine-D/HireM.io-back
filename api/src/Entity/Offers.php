@@ -28,28 +28,28 @@ class Offers
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $company_description;
+    private $companyDescription;
 
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $offer_description;
+    private $offerDescription;
 
     /**
      * @ORM\Column(type="date")
      */
-    private $start_date;
+    private $startDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ContractsTypes", inversedBy="offers")
      * @ORM\JoinColumn(nullable=false)
      */
-    private $contract_type;
+    private $contractType;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $work_location;
+    private $workLocation;
 
     /**
      * @ORM\OneToMany(targetEntity="User", mappedBy="offers")
@@ -75,60 +75,60 @@ class Offers
 
     public function getCompanyDescription(): ?string
     {
-        return $this->company_description;
+        return $this->companyDescription;
     }
 
     public function setCompanyDescription(string $company_description): self
     {
-        $this->company_description = $company_description;
+        $this->companyDescription = $company_description;
 
         return $this;
     }
 
     public function getOfferDescription(): ?string
     {
-        return $this->offer_description;
+        return $this->offerDescription;
     }
 
     public function setOfferDescription(string $offer_description): self
     {
-        $this->offer_description = $offer_description;
+        $this->offerDescription = $offer_description;
 
         return $this;
     }
 
     public function getStartDate(): ?\DateTimeInterface
     {
-        return $this->start_date;
+        return $this->startDate;
     }
 
     public function setStartDate(\DateTimeInterface $start_date): self
     {
-        $this->start_date = $start_date;
+        $this->startDate = $start_date;
 
         return $this;
     }
 
     public function getContractType(): ?ContractsTypes
     {
-        return $this->contract_type;
+        return $this->contractType;
     }
 
     public function setContractType(?ContractsTypes $contract_type): self
     {
-        $this->contract_type = $contract_type;
+        $this->contractType = $contract_type;
 
         return $this;
     }
 
     public function getWorkLocation(): ?string
     {
-        return $this->work_location;
+        return $this->workLocation;
     }
 
     public function setWorkLocation(string $work_location): self
     {
-        $this->work_location = $work_location;
+        $this->workLocation = $work_location;
 
         return $this;
     }

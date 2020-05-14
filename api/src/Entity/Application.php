@@ -41,7 +41,7 @@ class Application
     private $gender;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $picture;
 
@@ -63,15 +63,15 @@ class Application
     /**
      * @ORM\Column(type="string", length=255)
      */
-    private $motivation_field;
+    private $motivationField;
 
     /**
      * @ORM\Column(type="integer")
      */
-    private $salary_wanted;
+    private $salaryWanted;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $cv;
 
@@ -171,24 +171,24 @@ class Application
 
     public function getMotivationField(): ?string
     {
-        return $this->motivation_field;
+        return $this->motivationField;
     }
 
     public function setMotivationField(string $motivation_field): self
     {
-        $this->motivation_field = $motivation_field;
+        $this->motivationField = $motivation_field;
 
         return $this;
     }
 
     public function getSalaryWanted(): ?int
     {
-        return $this->salary_wanted;
+        return $this->salaryWanted;
     }
 
     public function setSalaryWanted(int $salary_wanted): self
     {
-        $this->salary_wanted = $salary_wanted;
+        $this->salaryWanted = $salary_wanted;
 
         return $this;
     }
