@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -26,6 +27,16 @@ class User implements UserInterface
     private $email;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $firstname;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $lastname;
+
+    /**
      * @ORM\Column(type="json")
      */
     private $roles = [];
@@ -35,6 +46,25 @@ class User implements UserInterface
      * @ORM\Column(type="string")
      */
     private $password;
+
+    /**
+     * @ORM\Column(type="boolean", options={"default":"false"})
+     */
+    private $isRecruiter;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Offers", inversedBy="user")
+     * @ORM\JoinColumn(referencedColumnName="id", unique=true)
+     * @ApiSubresource
+     */
+    public $offers;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Application", inversedBy="user")
+     * @ORM\JoinColumn(referencedColumnName="id", unique=true)
+     * @ApiSubresource
+     */
+    public $applications;
 
     public function getId(): ?int
     {
@@ -70,7 +100,7 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        $roles[] = 'ROLE_USER';
+        //$roles[] = 'ROLE_USER';
 
         return array_unique($roles);
     }
@@ -112,5 +142,65 @@ class User implements UserInterface
     {
         // If you store any temporary, sensitive data on the user, clear it here
         // $this->plainPassword = null;
+    }
+
+    /**
+     * Get the value of is_recruiter
+     */
+    public function getIsRecruiter()
+    {
+        return $this->isRecruiter;
+    }
+
+    /**
+     * Set the value of is_recruiter
+     *
+     * @return  self
+     */
+    public function setIsRecruiter($is_recruiter)
+    {
+        $this->isRecruiter = $is_recruiter;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of firstname
+     */
+    public function getFirstname()
+    {
+        return $this->firstname;
+    }
+
+    /**
+     * Set the value of firstname
+     *
+     * @return  self
+     */
+    public function setFirstname($firstname)
+    {
+        $this->firstname = $firstname;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of lastname
+     */
+    public function getLastname()
+    {
+        return $this->lastname;
+    }
+
+    /**
+     * Set the value of lastname
+     *
+     * @return  self
+     */
+    public function setLastname($lastname)
+    {
+        $this->lastname = $lastname;
+
+        return $this;
     }
 }

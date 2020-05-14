@@ -6,7 +6,9 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *  
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\OffersRepository")
  */
 class Offers
@@ -48,6 +50,11 @@ class Offers
      * @ORM\Column(type="string", length=255)
      */
     private $work_location;
+
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="offers")
+     */
+    public $user;
 
     public function getId(): ?int
     {

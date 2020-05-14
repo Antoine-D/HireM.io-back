@@ -6,7 +6,14 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *      subresourceOperations={
+ *          "api_user_applications_get_subresource"={
+ *              "method"="GET",
+ *              "normalization_context"={"groups"={"applications"}}
+ *          }
+ *      }
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\ApplicationRepository")
  */
 class Application
@@ -67,6 +74,11 @@ class Application
      * @ORM\Column(type="string", length=255)
      */
     private $cv;
+
+    /**
+     * @ORM\OneToMany(targetEntity="User", mappedBy="applications")
+     */
+    public $user;
 
     public function getId(): ?int
     {
