@@ -6,9 +6,20 @@ use Doctrine\ORM\Mapping as ORM;
 use ApiPlatform\Core\Annotation\ApiResource;
 use ApiPlatform\Core\Annotation\ApiSubresource;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 /**
- * @ApiResource()
+ * @ApiResource(
+ *     normalizationContext={"groups"={"get"}},
+ *     itemOperations={
+ *         "get",
+ *         "put"={
+ *             "normalization_context"={"groups"={"put"}}
+ *         }
+ *     }
+ * 
+ * 
+ * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="`user`")
  */
@@ -18,6 +29,7 @@ class User implements UserInterface
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups("get")
      */
     private $id;
 
@@ -28,11 +40,13 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("get")
      */
     private $firstname;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups("get")
      */
     private $lastname;
 
@@ -49,6 +63,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="boolean", options={"default":"false"})
+     * @Groups("get")
      */
     private $isRecruiter;
 
@@ -56,6 +71,7 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="Offers", inversedBy="user")
      * @ORM\JoinColumn(referencedColumnName="id", unique=true)
      * @ApiSubresource
+     * @Groups("get")
      */
     public $offers;
 
@@ -63,6 +79,7 @@ class User implements UserInterface
      * @ORM\ManyToOne(targetEntity="Application", inversedBy="user")
      * @ORM\JoinColumn(referencedColumnName="id", unique=true)
      * @ApiSubresource
+     * @Groups("get")
      */
     public $applications;
 
