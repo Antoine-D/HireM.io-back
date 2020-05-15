@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Annotation\ApiSubresource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
@@ -22,11 +24,14 @@ class ContractsTypes
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"offers"})
      */
     private $name;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="contract_type")
+     * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="contractType")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
+     * @ApiSubresource
      */
     private $offers;
 

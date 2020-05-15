@@ -17,8 +17,6 @@ use Symfony\Component\Serializer\Annotation\Groups;
  *             "normalization_context"={"groups"={"put"}}
  *         }
  *     }
- * 
- * 
  * )
  * @ORM\Entity(repositoryClass="App\Repository\UserRepository")
  * @ORM\Table(name="`user`")
@@ -35,6 +33,7 @@ class User implements UserInterface
 
     /**
      * @ORM\Column(type="string", length=180, unique=true)
+     * @Groups("get")
      */
     private $email;
 
@@ -68,15 +67,15 @@ class User implements UserInterface
     private $isRecruiter;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Offers", inversedBy="user")
-     * @ORM\JoinColumn(referencedColumnName="id", unique=true)
+     * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="user")
+     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
      * @ApiSubresource
      * @Groups("get")
      */
-    public $offers;
+    public $offer_id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Application", inversedBy="user")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Application", inversedBy="user")
      * @ORM\JoinColumn(referencedColumnName="id", unique=true)
      * @ApiSubresource
      * @Groups("get")
@@ -117,7 +116,9 @@ class User implements UserInterface
     {
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
-        //$roles[] = 'ROLE_USER';
+        if (empty($this->roles)) {
+            $roles[] = 'ROLE_USER';
+        }
 
         return array_unique($roles);
     }

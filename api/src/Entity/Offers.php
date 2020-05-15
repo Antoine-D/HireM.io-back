@@ -3,11 +3,12 @@
 namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ApiResource(
- *  
+ *  normalizationContext={"groups"={"offers"}}
  * )
  * @ORM\Entity(repositoryClass="App\Repository\OffersRepository")
  */
@@ -17,44 +18,53 @@ class Offers
      * @ORM\Id()
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
+     * @Groups({"offers"})
      */
     private $id;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"offers"})
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"offers"})
      */
     private $companyDescription;
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Groups({"offers"})
      */
     private $offerDescription;
 
     /**
      * @ORM\Column(type="date")
+     * @Groups({"offers"})
      */
     private $startDate;
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\ContractsTypes", inversedBy="offers")
      * @ORM\JoinColumn(nullable=false)
+     * @Groups({"offers"})
      */
     private $contractType;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Groups({"offers"})
      */
     private $workLocation;
 
     /**
-     * @ORM\OneToMany(targetEntity="User", mappedBy="offers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offers")
+     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @Groups({"offers"})
      */
-    public $user;
+    public $user_id;
 
     public function getId(): ?int
     {
