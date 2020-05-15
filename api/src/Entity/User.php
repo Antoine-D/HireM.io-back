@@ -67,8 +67,8 @@ class User implements UserInterface
     private $isRecruiter;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="user")
-     * @ORM\JoinColumn(name="offer_id", referencedColumnName="id")
+     * @ORM\OneToMany(targetEntity="App\Entity\Offers", mappedBy="user_id")
+     * @ORM\JoinColumn(name="id", referencedColumnName="id")
      * @ApiSubresource
      * @Groups("get")
      */

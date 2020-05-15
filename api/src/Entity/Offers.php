@@ -60,7 +60,7 @@ class Offers
     private $workLocation;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offers")
+     * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="offer_id")
      * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * @Groups({"offers"})
      */
