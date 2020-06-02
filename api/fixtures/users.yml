@@ -1,0 +1,9 @@
+App\Entity\User:
+  users_{1..50}:
+    email : '<email()>'
+    roles : [ROLE_USER]
+    password : '@@$argon2id$v=19$m=65536,t=4,p=1$2upSUkl3Xb7h8llVcSYRPA$C0b+nLha6YCKCPclB2OGmkpwZLUNT2vBBchSnrINND4'
+    firstname: 'Antoine'
+    lastname: 'Dumont'
+    is_recruiter: true
+  
