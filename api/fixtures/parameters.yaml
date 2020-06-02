@@ -1,0 +1,5 @@
+parameters:
+    app.alice.parameters.role-user: ['ROLE_USER']
+    genderArray: ['H', 'F']
+    applicationStatusArray: ['done', 'on-going', 'terminated', 'refused', 'approved', 'pending']
+    contractTypeArray: ['CDD', 'CDI', 'Alternance', 'Stage']

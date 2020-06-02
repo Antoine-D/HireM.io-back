@@ -1,0 +1,13 @@
+App\Entity\Application:
+    application_{1..5}:
+        name: <lastName()>
+        firstname: <firstName()>
+        gender: <randomElement($genderArray)>
+        picture: <image()>
+        email: <safeEmail()>
+        age: <numberBetween(18, 99)>
+        address: <address()>
+        motivationField: <realText(10)>
+        salaryWanted: <numberBetween(28000, 60000)>
+        cv: <realText(10)>
+        user: ["@user_*"]
