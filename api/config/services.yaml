@@ -41,3 +41,5 @@ services:
         tags: [ { name: nelmio_alice.faker.provider } ]
     App\DataFixtures\Faker\Provider\UserProvider:
         tags: [ { name: nelmio_alice.faker.provider } ]
+    App\DataFixtures\Faker\Provider\PdfProvider:
+        tags: [ { name: nelmio_alice.faker.provider } ]
