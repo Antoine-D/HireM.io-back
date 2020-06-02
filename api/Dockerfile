@@ -29,6 +29,12 @@ RUN set -eux; \
 		libzip-dev \
 		postgresql-dev \
 		zlib-dev \
+		freetype \
+        libjpeg-turbo \
+        libpng \
+        freetype-dev \
+        libjpeg-turbo-dev \
+        libpng-dev \
 	; \
 	\
 	docker-php-ext-configure zip; \
@@ -36,7 +42,9 @@ RUN set -eux; \
 		intl \
 		pdo_pgsql \
 		zip \
+		gd \
 	; \
+
 	pecl install \
 		apcu-${APCU_VERSION} \
 	; \
@@ -44,6 +52,7 @@ RUN set -eux; \
 	docker-php-ext-enable \
 		apcu \
 		opcache \
+		gd \
 	; \
 	\
 	runDeps="$( \
