@@ -1,0 +1,3 @@
+App\Entity\ContractsTypes:
+    contract_type_{1..10}:
+        name: <randomElement($contractTypeArray)>

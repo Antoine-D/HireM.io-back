@@ -1,0 +1,9 @@
+App\Entity\Offers:
+    offer_{1..20}:
+        name: <catchPhrase()>
+        companyDescription: <bs()>
+        offerDescription: <sentence()>
+        startDate: <dateTime("now")>
+        contractType: "@contract_type_*"
+        workLocation: <city()>
+        user_id: "@user_*"
