@@ -41,7 +41,7 @@ class Application
     private $gender;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", length=65535, nullable=true)
      */
     private $picture;
 
