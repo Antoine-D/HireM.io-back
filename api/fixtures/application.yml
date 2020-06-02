@@ -9,5 +9,5 @@ App\Entity\Application:
         address: <address()>
         motivationField: <realText(10)>
         salaryWanted: <numberBetween(28000, 60000)>
-        cv: <realText(10)>
+        cv: <pdf()>
         user: ["@user_*"]
