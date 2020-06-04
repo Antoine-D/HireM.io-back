@@ -17,7 +17,7 @@ trait FixturesTrait
      */
     public function theFixturesFileIsLoaded(string $file)
     {
-        $this->fixtureManager->load(['./fixtures/' . $file . '.yml']);
+        $this->fixtureManager->load(['./fixtures/' . $file . '.yaml']);
     }
 
     /**

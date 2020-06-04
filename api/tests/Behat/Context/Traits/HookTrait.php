@@ -11,7 +11,6 @@ trait HookTrait
      */
     public static function beforeSuite()
     {
-        var_dump("before suite");
         StaticDriver::setKeepStaticConnections(true);
     }
 
@@ -20,7 +19,6 @@ trait HookTrait
      */
     public function beforeScenario()
     {
-        var_dump("before sena");
         /** Init default content-type */
         $this->requestHeaders["content-type"] = "application/ld+json";
         StaticDriver::beginTransaction();
@@ -31,7 +29,6 @@ trait HookTrait
      */
     public function afterScenario()
     {
-        var_dump("after sena");
         $this->requestHeaders["content-type"] = "";
         StaticDriver::rollBack();
     }
@@ -41,7 +38,6 @@ trait HookTrait
      */
     public static function afterSuite()
     {
-        var_dump("after suite");
         StaticDriver::setKeepStaticConnections(false);
     }
 }

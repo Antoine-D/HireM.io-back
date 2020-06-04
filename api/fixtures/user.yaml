@@ -1,8 +1,15 @@
 App\Entity\User:
-    user_{1..10}:
+    user_1:
+        email: "root@root.root"
+        firstname: <firstName()>
+        lastname: <lastName()>
+        roles: <{app.alice.parameters.role_user}>
+        password: <hashPassword("root")>
+        isRecruiter: true
+    user_{2..10}:
         email: <safeEmail()>
         firstname: <firstName()>
         lastname: <lastName()>
-        roles: <{app.alice.parameters.role-user}>
+        roles: <{app.alice.parameters.role_user}>
         password: <hashPassword("azerty")>
         isRecruiter: <boolean()>

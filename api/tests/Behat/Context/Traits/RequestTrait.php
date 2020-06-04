@@ -65,8 +65,6 @@ trait RequestTrait
     {
         $method = strtoupper($httpMethod);
 
-        $options = array();
-
         if($this->authUser) {
             $options = ['auth' => [$this->authUser, $this->authPassword]];
         }
@@ -137,6 +135,20 @@ trait RequestTrait
     /**
      * Test status code after request
      *
+     * @Then /^the response status code should not be (?P<code>\d+)$/
+     */
+    public function theResponseStatusCodeShouldNotBe($statusCode)
+    {
+        $response = $this->getLastResponse();
+
+        assertNotEquals($statusCode,
+            $response->getStatusCode(),
+            sprintf('Expected status code not to be "%s".', $statusCode));
+    }
+
+    /**
+     * Test status code after request
+     *
      * @Then /^the response status code should be (?P<code>\d+)$/
      */
     public function theResponseStatusCodeShouldBe($statusCode)
@@ -147,6 +159,7 @@ trait RequestTrait
             $response->getStatusCode(),
             sprintf('Expected status code "%s" does not match observed status code "%s"', $statusCode, $response->getStatusCode()));
     }
+
 
     /**
      * Checks the response exists and returns it.
