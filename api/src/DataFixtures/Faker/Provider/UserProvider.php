@@ -2,11 +2,28 @@
 
 namespace App\DataFixtures\Faker\Provider;
 
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use App\Entity\User;
+
 class UserProvider
 {
-    public static function hashPassword($pass)
+    private $pwdEncoder;
+
+    public function __construct( UserPasswordEncoderInterface $pwdEncoder )
     {
-        return 'hash '.$pass;
+        $this->pwdEncoder = $pwdEncoder;
+    }
+
+    public function hashPassword()
+    {
+        $user = new User();
+        $pass = 'azerty';
+
+        $encoded = $this->pwdEncoder->encodePassword($user, $pass);
+
+        $user->setPassword($encoded);
+
+        return $user->getPassword();
     }
 }
 
