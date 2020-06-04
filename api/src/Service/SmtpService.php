@@ -7,7 +7,7 @@ use Symfony\Component\Config\Definition\Exception\Exception;
 
 class SmtpService extends AbstractController
 {
-    public function sendEmail($message, $email, $subject, $params, \Swift_Mailer $mailer)
+    public static function sendEmail($message, $email, $subject, $params, \Swift_Mailer $mailer)
     {
         $message = (new \Swift_Message($message))
             ->setFrom('hirem.emailing@gmail.com')
