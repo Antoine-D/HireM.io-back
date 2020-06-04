@@ -107,12 +107,12 @@ Feature: _User_
     Given I have the payload
       """
       {
-          "email": "terry.johns@example.org",
-          "password": "azerty"
+          "email": "root@root.root",
+          "password": "root"
       }
       """
     When I request "POST /authentication_token"
-    Then the response status code should be 201
+    Then the response status code should be 200
     And the "@token" property should be an string
 
     Scenario: login user : email invalid
