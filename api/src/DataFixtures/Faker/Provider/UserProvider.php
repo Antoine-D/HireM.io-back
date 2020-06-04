@@ -14,10 +14,9 @@ class UserProvider
         $this->pwdEncoder = $pwdEncoder;
     }
 
-    public function hashPassword()
+    public function hashPassword( $pass )
     {
         $user = new User();
-        $pass = 'azerty';
 
         $encoded = $this->pwdEncoder->encodePassword($user, $pass);
 

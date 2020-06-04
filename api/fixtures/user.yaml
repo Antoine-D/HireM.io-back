@@ -4,5 +4,5 @@ App\Entity\User:
         firstname: <firstName()>
         lastname: <lastName()>
         roles: <{app.alice.parameters.role-user}>
-        password: <hashPassword()>
+        password: <hashPassword("azerty")>
         isRecruiter: <boolean()>
