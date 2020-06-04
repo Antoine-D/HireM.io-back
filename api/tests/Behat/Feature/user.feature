@@ -140,3 +140,8 @@ Feature: _User_
     When I request "POST /authentication_token"
     And the response status code should not be 201
     Then the response status code should be 401
+
+  Scenario: jwt test
+    Given I login user "root@root.root" and password "root"
+    Then I request "GET /applications"
+    And the response status code should be 200
