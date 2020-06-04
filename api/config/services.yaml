@@ -22,7 +22,6 @@ services:
     App\Controller\:
         resource: '../src/Controller'
         tags: ['controller.service_arguments']
-
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
 
@@ -41,5 +40,6 @@ services:
         tags: [ { name: nelmio_alice.faker.provider } ]
     App\DataFixtures\Faker\Provider\UserProvider:
         tags: [ { name: nelmio_alice.faker.provider } ]
+        autowire: true
     App\DataFixtures\Faker\Provider\PdfProvider:
         tags: [ { name: nelmio_alice.faker.provider } ]
