@@ -1,5 +1,4 @@
 App\Entity\User:
-    
     user_1:
         email: "root@root.root"
         firstname: <firstName()>

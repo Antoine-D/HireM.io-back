@@ -8,21 +8,11 @@ use App\Tests\Behat\Manager\AuthManager;
 trait AuthTrait
 {
     /**
-     * The user to use with HTTP basic authentication
-     *
-     * @var string
-     */
-    protected $authUser;
-    /**
-     * The password to use with HTTP basic authentication
-     *
-     * @var string
-     */
-    protected $authPassword;
-    /**
      * @var AuthManager
      */
     private AuthManager $authManager;
+
+    // private string $jwt;
 
     /**
      * @Given /^I create user with email "([^"]*)" and password "([^"]*)"$/
@@ -30,8 +20,6 @@ trait AuthTrait
     public function iCreateUserWithEmailAndPassword($email, $password)
     {
         $authRequest = $this->authManager->requestAuthPayload($email, $password);
-
-        // Send request
         $this->lastResponse = $this->client->request(
             "POST",
             "/users",
@@ -43,9 +31,9 @@ trait AuthTrait
     }
 
     /**
-     * @Given /^I login user "([^"]*)" and password "([^"]*)"$/
+     * @Given /^I checked my token with user "([^"]*)" and password "([^"]*)"$/
      */
-    public function iLoginWithEmailAndPassword($email, $password)
+    public function iCheckWithEmailAndPassword($email, $password)
     {
         $authRequest = $this->authManager->requestAuthPayload($email, $password);
         $this->lastResponse = $this->client->request(
@@ -56,5 +44,14 @@ trait AuthTrait
                 'body' => $authRequest
             ]
         );
+    }
+
+    /**
+     * @Given /^I login user "([^"]*)" and password "([^"]*)"$/
+     * UNFINISHED
+     */
+    public function iLoginWithEmailAndPassword($email, $password)
+    {
+        $this->jwt = $this->authManager->getToken($email, $password);
     }
 }

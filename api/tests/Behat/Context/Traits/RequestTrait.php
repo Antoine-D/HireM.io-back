@@ -69,6 +69,13 @@ trait RequestTrait
             $options = ['auth' => [$this->authUser, $this->authPassword]];
         }
 
+        if($this->authManager->getToken()) {
+            $this->requestHeaders = array(
+                "Content-type" => "application/ld+json",
+                "Authorization" => "Bearer " . $this->authManager->getToken()
+            );
+        }
+
         $this->lastRequest = new Request(
             $httpMethod,
             $resource,
