@@ -34,7 +34,7 @@ class FixtureManager implements ProcessorInterface
      */
     public function preProcess(string $fixtureId, $object): void
     {
-        // do nothing now
+
     }
 
     /**
@@ -43,6 +43,7 @@ class FixtureManager implements ProcessorInterface
      */
     public function postProcess(string $fixtureId, $object): void
     {
-        // do nothing now
+        dump("id: ".$fixtureId);
+        $this->references[$fixtureId] = $object;
     }
 }
