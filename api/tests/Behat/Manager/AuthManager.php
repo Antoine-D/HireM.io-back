@@ -27,19 +27,19 @@ class AuthManager
         }';
     }
 
-    public function getToken($email, $password) {
-        $authRequest = $this->requestAuthPayload($email, $password);
-        $this->lastResponse = $this->client->request(
-            "POST",
-            "/authentication_token",
-            [
-                'headers' => $this->requestHeaders,
-                'body' => $authRequest
-            ]
-        );
+    public function getToken() {
+        // $authRequest = $this->requestAuthPayload($email, $password);
+        // $this->lastResponse = $this->client->request(
+        //     "POST",
+        //     "/authentication_token",
+        //     [
+        //         'headers' => $this->requestHeaders,
+        //         'body' => $authRequest
+        //     ]
+        // );
 
-        $data = json_decode($this->lastResponse);
-        dump($data->token);
-        return $data->token;
+        // $data = json_decode($this->lastResponse);
+        // dump($data->token);
+        // return $data->token;
     }
 }

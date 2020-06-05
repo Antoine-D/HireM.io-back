@@ -11,7 +11,8 @@ trait AuthTrait
      * @var AuthManager
      */
     private AuthManager $authManager;
-
+    protected $authUser;
+    protected $authPassword;
     // private string $jwt;
 
     /**
