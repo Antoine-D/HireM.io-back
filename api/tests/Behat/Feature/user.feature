@@ -113,7 +113,7 @@ Feature: _User_
       """
     When I request "POST /authentication_token"
     Then the response status code should be 200
-    And the "@token" property should be an string
+    And the "token" property should be a string
 
     Scenario: login user : email invalid
     Given I have the payload
