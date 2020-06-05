@@ -1,29 +1,58 @@
 <?php
 
+
 namespace App\Tests\Behat\Context\Traits;
+
+use App\Tests\Behat\Manager\AuthManager;
 
 trait AuthTrait
 {
     /**
-     * The user to use with HTTP basic authentication
-     *
-     * @var string
+     * @var AuthManager
      */
+    private AuthManager $authManager;
     protected $authUser;
-
-    /**
-     * The password to use with HTTP basic authentication
-     *
-     * @var string
-     */
     protected $authPassword;
+    // private string $jwt;
 
     /**
-     * @Given /^I authenticate with user "([^"]*)" and password "([^"]*)"$/
+     * @Given /^I create user with email "([^"]*)" and password "([^"]*)"$/
      */
-    public function iAuthenticateWithEmailAndPassword($email, $password)
+    public function iCreateUserWithEmailAndPassword($email, $password)
     {
-        $this->authUser = $email;
-        $this->authPassword = $password;
+        $authRequest = $this->authManager->requestAuthPayload($email, $password);
+        $this->lastResponse = $this->client->request(
+            "POST",
+            "/users",
+            [
+                'headers' => $this->requestHeaders,
+                'body' => $authRequest
+            ]
+        );
+    }
+
+    /**
+     * @Given /^I checked my token with user "([^"]*)" and password "([^"]*)"$/
+     */
+    public function iCheckWithEmailAndPassword($email, $password)
+    {
+        $authRequest = $this->authManager->requestAuthPayload($email, $password);
+        $this->lastResponse = $this->client->request(
+            "POST",
+            "/authentication_token",
+            [
+                'headers' => $this->requestHeaders,
+                'body' => $authRequest
+            ]
+        );
+    }
+
+    /**
+     * @Given /^I login user "([^"]*)" and password "([^"]*)"$/
+     * UNFINISHED
+     */
+    public function iLoginWithEmailAndPassword($email, $password)
+    {
+        $this->jwt = $this->authManager->getToken($email, $password);
     }
 }

@@ -109,8 +109,8 @@ Feature: _User_
     Given I have the payload
       """
       {
-          "email": "root@root.root",
-          "password": "root"
+          "email": "test2@test.test",
+          "password": "test"
       }
       """
     When I request "POST /authentication_token"
@@ -140,3 +140,27 @@ Feature: _User_
     When I request "POST /authentication_token"
     And the response status code should not be 201
     Then the response status code should be 401
+
+  Scenario: jwt test
+    Given I login user "root@root.root" and password "root"
+    Then I request "GET /applications"
+
+  Scenario: authentication check with valid credentials
+    Given I checked my token with user "test2@test.test" and password "test"
+    And the response status code should be 200
+    And the "token" property should be a string
+
+  Scenario: authentication check with invalid password
+    Given I checked my token with user "root@root.root" and password "azniodznonzdoa"
+    And the response status code should be 401
+    And the "message" property should be a string equalling "Invalid credentials."
+
+  Scenario: authentication check with invalid email
+    Given I checked my token with user "root@root.dadaroot" and password "root"
+    And the response status code should be 401
+    And the "message" property should be a string equalling "Invalid credentials."
+
+  Scenario: authentication check with too much characters in email
+    Given I checked my token with user "roooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooot@root.dadaroot" and password "root"
+    And the response status code should be 401
+    And the "message" property should be a string equalling "Invalid credentials."
