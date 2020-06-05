@@ -18,6 +18,8 @@ Feature: _User_
       """
     When I request "POST /users"
     Then the response status code should be 201
+    Then I save the response in the reference "registered_user"
+    Then I dump actual references
     And the "@type" property should be a string equalling "User"
     And the "@id" property should be an integer
     And the "offer_id" property should not exist

@@ -9,6 +9,7 @@ use App\Tests\Behat\Context\Traits\{
     FixturesTrait,
     HookTrait,
     OutputTrait,
+    ReferenceTrait,
     RequestTrait,
     ScopeTrait,
     UtilsTrait
@@ -25,6 +26,7 @@ class ApiFeatureContext implements Context
     use HookTrait;
     use FixturesTrait;
     use RequestTrait;
+    use ReferenceTrait;
     use AuthTrait;
     use ScopeTrait;
     use OutputTrait;
