@@ -98,3 +98,43 @@ Feature: _User_
       """
     When I request "POST /users"
     And the response status code should be 201
+
+  ###########################################################
+  # ABOUT LOGIN : POST /authentication_token
+  ###########################################################
+
+  Scenario: login user : valid
+    Given I have the payload
+      """
+      {
+          "email": "root@root.root",
+          "password": "root"
+      }
+      """
+    When I request "POST /authentication_token"
+    Then the response status code should be 200
+    And the "@token" property should be an string
+
+    Scenario: login user : email invalid
+    Given I have the payload
+      """
+      {
+          "email": "invalid@email.com",
+          "password": "azerty"
+      }
+      """
+    When I request "POST /authentication_token"
+    And the response status code should not be 201
+    Then the response status code should be 401
+
+    Scenario: login user : password invalid
+    Given I have the payload
+      """
+      {
+          "email": "terry.johns@example.org",
+          "password": "invalidpassword"
+      }
+      """
+    When I request "POST /authentication_token"
+    And the response status code should not be 201
+    Then the response status code should be 401
