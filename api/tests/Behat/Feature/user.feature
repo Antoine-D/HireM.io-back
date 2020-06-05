@@ -145,7 +145,7 @@ Feature: _User_
     Given I login user "root@root.root" and password "root"
     Then I request "GET /applications"
   Scenario: authentication check with valid credentials
-    Given I checked my token with user "root@root.root" and password "root"
+    Given I checked my token with user "test2@test.test" and password "test"
     And the response status code should be 200
     And the "token" property should be a string
 
