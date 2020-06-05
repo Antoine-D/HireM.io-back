@@ -109,8 +109,8 @@ Feature: _User_
     Given I have the payload
       """
       {
-          "email": "root@root.root",
-          "password": "root"
+          "email": "test2@test.test",
+          "password": "test"
       }
       """
     When I request "POST /authentication_token"
@@ -144,6 +144,7 @@ Feature: _User_
   Scenario: jwt test
     Given I login user "root@root.root" and password "root"
     Then I request "GET /applications"
+
   Scenario: authentication check with valid credentials
     Given I checked my token with user "test2@test.test" and password "test"
     And the response status code should be 200
